@@ -1,5 +1,5 @@
 <div align=center>
-<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="width:70%;" />
+<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="width:50%;" />
 </div>
 
 
