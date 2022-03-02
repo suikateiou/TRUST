@@ -20,25 +20,25 @@ The file tree organization is shown as:
 
 ```
 .
-├── run.py							# the top module
-└── src								# some important functions and data
+├── run.py				# the top module
+└── src					# some important functions and data
     ├── data
-    │   ├── datasets				# different datasets, take CityFlow for example
+    │   ├── datasets			# different datasets, take CityFlow for example
     │   │   ├── cityflow
-    │   │   │   ├── groundtruth		# groundtruth trajectory of each query vehicle
+    │   │   │   ├── groundtruth	        # groundtruth trajectory of each query vehicle
     │   │   │   ├── node_features	# features extracted and indexed from each camera video
-    │   │   │   ├── query			# image and its feature of each query vehicle
+    │   │   │   ├── query		# image and its feature of each query vehicle
     │   │   │   │   ├── features
     │   │   │   │   └── images
-    │   │   │   └── roadnetwork		# roadnetwork information of each dataset
+    │   │   │   └── roadnetwork	        # roadnetwork information of each dataset
     │   │   └── ...
-    │   └── outputs					# intermediate, final, and evaluation resutls
-    ├── log							# runtime log
-    ├── common						# some common utils
-    ├── proximity_graph				# proximity graph with 3-dimension scoring
-    ├── setting.py					# some basic configurations
-    ├── topk						# top-k retrieval of the most visually similar snapshots
-    └── traj_recovery				# path filter-and-aggregate framework
+    │   └── outputs			# intermediate, final, and evaluation resutls
+    ├── log				# runtime log
+    ├── common			        # some common utils
+    ├── proximity_graph			# proximity graph with 3-dimension scoring
+    ├── setting.py			# some basic configurations
+    ├── topk				# top-k retrieval of the most visually similar snapshots
+    └── traj_recovery			# path filter-and-aggregate framework
 ```
 
 Node features of each camera are not the complete version here due to the large scale, but they are available [here](https://pan.baidu.com/s/12q_5VThVLze6dQ5MzTZamw) with code `4sj0`.
