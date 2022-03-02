@@ -1,4 +1,4 @@
-<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="zoom:9%;" />
+<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="width:300px;" />
 
 
 
@@ -6,7 +6,7 @@
 
 This is the source code of TRUST, a new path inference algorithm tailored for query issued against an urban-scale video database. Given a query image containing the target object, our goal is to recover its historical trajectory from the footprints captured by the surveillance cameras deployed on a road network.  The input  is an image of query vehicle and the output is a sequence of camera ids together with their corresponding timestamps. 
 
-<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/example.png" style="zoom:35%;" />
+<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/example.png" style="width:300px;" />
 
 
 
@@ -18,25 +18,25 @@ The file tree organization is shown as:
 
 ```
 .
-├── run.py												# the top module
-└── src														# some important functions and data
+├── run.py							# the top module
+└── src								# some important functions and data
     ├── data
-    │   ├── datasets							# different datasets, take CityFlow for example
+    │   ├── datasets				# different datasets, take CityFlow for example
     │   │   ├── cityflow
     │   │   │   ├── groundtruth		# groundtruth trajectory of each query vehicle
     │   │   │   ├── node_features	# features extracted and indexed from each camera video
-    │   │   │   ├── query					# image and its feature of each query vehicle
+    │   │   │   ├── query			# image and its feature of each query vehicle
     │   │   │   │   ├── features
     │   │   │   │   └── images
     │   │   │   └── roadnetwork		# roadnetwork information of each dataset
     │   │   └── ...
-    │   └── outputs								# intermediate, final, and evaluation resutls
-    ├── log												# runtime log
-    ├── common										# some common utils
-    ├── proximity_graph						# proximity graph with 3-dimension scoring
-    ├── setting.py								# some basic configurations
-    ├── topk											# top-k retrieval of the most visually similar snapshots
-    └── traj_recovery							# path filter-and-aggregate framework
+    │   └── outputs					# intermediate, final, and evaluation resutls
+    ├── log							# runtime log
+    ├── common						# some common utils
+    ├── proximity_graph				# proximity graph with 3-dimension scoring
+    ├── setting.py					# some basic configurations
+    ├── topk						# top-k retrieval of the most visually similar snapshots
+    └── traj_recovery				# path filter-and-aggregate framework
 ```
 
 Node features of each camera are not the complete version here due to the large scale, but they are available [here](https://pan.baidu.com/s/12q_5VThVLze6dQ5MzTZamw) with code `4sj0`.
