@@ -1,13 +1,15 @@
-<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="width:300px;" />
-
+<div align=center>
+<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/logo.png" alt="logo" style="width:800px;" />
+</div>
 
 
 ## Visual Path Inference in Urban-Scale Camera Network
 
 This is the source code of TRUST, a new path inference algorithm tailored for query issued against an urban-scale video database. Given a query image containing the target object, our goal is to recover its historical trajectory from the footprints captured by the surveillance cameras deployed on a road network.  The input  is an image of query vehicle and the output is a sequence of camera ids together with their corresponding timestamps. 
 
-<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/example.png" style="width:300px;" />
-
+<div align=center>
+<img src="https://trajectory-recovery.oss-cn-hangzhou.aliyuncs.com/example.png" style="width:800px;" />
+</div>
 
 
 ## Architecture
