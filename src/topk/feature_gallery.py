@@ -26,7 +26,7 @@ class FeatureGallery(object):
         return index
 
     def pick_train_data(self, node, d, line_cnt, train_data, global_cnt, limit):
-        # 加载 gallery 文件
+        # load the gallery file
         gf_file = self.data_path + '/%d/gf_%d.wyr' % (node, node)
         features = np.fromfile(gf_file, dtype=np.float32)
         features.shape = -1, d
@@ -35,7 +35,7 @@ class FeatureGallery(object):
             f.write(content)
         line_cnt += features.shape[0]
 
-        # 随机选取 train 数据
+        # randomly pick train data
         num = round(features.shape[0] / 5)
         cnt = 0
         ans = set()
@@ -55,14 +55,6 @@ class FeatureGallery(object):
                 global_cnt += 1
             else:
                 break
-
-        # 保存二进制文件
-        train_data_byte = local_train_data.tobytes()
-        output_folder = self.data_path + '/%d' % node
-        if os.path.exists(output_folder + '/train_data_%d.wyr' % node):
-            os.remove(output_folder + '/train_data_%d.wyr' % node)
-        with open(output_folder + '/train_data_%d.wyr' % node, "wb") as f:
-            f.write(train_data_byte)
 
         return train_data, line_cnt, global_cnt
 
@@ -88,7 +80,7 @@ class FeatureGallery(object):
         t = time.time() - t
         logging.info("cal all feature num %d with time %f" % (all_feature_num, t))
 
-        # 挑选训练数据
+        # pick train data
         logging.info("Merging training features")
         time_pick_train_data = time.time()
         train_data = np.zeros(shape=[all_feature_num, d]).astype('float32')
@@ -100,14 +92,7 @@ class FeatureGallery(object):
         time_pick_train_data = time.time() - time_pick_train_data
         logging.info("Picking and merging time: %f" % time_pick_train_data)
 
-        # 保存数据
-        logging.info("Size of train data: %7d" % len(train_data))
-        save_train_data = train_data.tobytes()
-
-        with open(dst, "wb") as f:
-            f.write(save_train_data)
-
-        # 建立索引
+        # build index
         quantizer = faiss.IndexFlatL2(d)
         index = faiss.IndexIVFPQ(quantizer, d, self.nlist, self.m, 8)
         logging.info("Training index")
@@ -126,11 +111,12 @@ class FeatureGallery(object):
         return time_pick_train_data, time_train_index, time_build_index
 
     def cal_all_features_dis(self, query_feature, dirs, k):
-        # logging.info("Searching with faiss index")
+        logging.info("Searching with faiss index")
         time_search = time.time()
         index = faiss.read_index(self.data_path + "/features.index")
         D, I = index.search(query_feature, k)
-        # 按照距离升序排序
+
+        # sort by the distance
         D = D[0]
         I = I[0]
         sorted_indices = np.argsort(D)

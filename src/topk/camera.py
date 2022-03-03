@@ -4,9 +4,9 @@ from src.topk.candidate import *
 class Camera(object):
     def __init__(self, nodeid):
         super(Camera, self).__init__()
-        self.nodeid = nodeid  # 摄像头编号
-        self.candidate_list = []  # 包含一个candidate的列表
-        self.idx_in_topk = -1  # 在top-k的list里的index
+        self.nodeid = nodeid
+        self.candidate_list = []
+        self.idx_in_topk = -1
 
     def add_candidate(self, candidate):
         self.candidate_list.append(candidate)

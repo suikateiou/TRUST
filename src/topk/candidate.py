@@ -4,18 +4,15 @@ import re
 from src.common.load_feature import *
 
 
-# 每一张备选物体对应这样一个对象
 class Candidate(object):
-    def __init__(self, feature_raw_idx, frame, nodeid, dis, rank, idx_in_frame, node_index_no=-1, index_no=-1):
+    def __init__(self, feature_raw_idx, frame, nodeid, dis, rank, idx_in_frame):
         super(Candidate, self).__init__()
-        self.feature = feature_raw_idx  # 2048维度的向量在原始文件中的索引
-        self.frame = frame  # 该图帧号（时间）
-        self.nodeid = nodeid  # 对应的点编号
-        self.idx_in_frame = idx_in_frame  # 这个物体在其所在帧中的编号
-        self.dis = dis  # 和query图片的距离
-        self.rank = rank  # feature距离的排名
-        self.node_index_no = node_index_no  # 在单个node里feature的序号
-        self.index_no = index_no  # 单独为keypoint准备的，因为keypoint是在全局搜索的
+        self.feature = feature_raw_idx
+        self.frame = frame
+        self.nodeid = nodeid
+        self.idx_in_frame = idx_in_frame
+        self.dis = dis
+        self.rank = rank
 
     def get_img_name(self):
         return 'c%04d_%07d_%07d.jpg' % (self.nodeid, self.frame, self.idx_in_frame)

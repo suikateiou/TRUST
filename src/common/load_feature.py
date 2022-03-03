@@ -1,7 +1,6 @@
 import numpy as np
 import bisect
 from src.setting import setting
-from sklearn import preprocessing
 
 
 def find_new_index(raw_index, video_time, node_num, traj_len):
@@ -46,9 +45,6 @@ def get_feature_by_file_index(file_id, new_index, folder_name):
     f.seek(2048 * 4 * new_index)
     data = f.read(2048 * 4)
     feature = np.frombuffer(data, dtype=np.float32)
-    # feature.shape = -1, 2048
-    # feature = preprocessing.normalize(feature)
-    # feature = np.squeeze (feature)
     return feature
 
 
@@ -57,9 +53,5 @@ def load_avg_feature(filename, index):
     f.seek(setting.FEATURE_DIM * 4 * index)
     data = f.read(setting.FEATURE_DIM * 4)
     feature = np.frombuffer(data, dtype=np.float32)
-    # feature = np.fromfile(filename, dtype=np.float32)
-    # feature.shape = -1, 2048
-    # feature = preprocessing.normalize(feature)
-    # feature = np.squeeze(feature)
     return feature
 

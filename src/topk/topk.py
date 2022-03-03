@@ -7,7 +7,7 @@ class Topk(object):
         super(Topk, self).__init__()
         self.k_limit = k_limit
         self.camera_list = []
-        self.time_gap = 28  # 间隔大于10s， 被认为是不同的
+        self.time_gap = 28
 
     def add_camera(self, camera):
         self.camera_list.append(camera)
@@ -16,7 +16,6 @@ class Topk(object):
 
     def find_camera(self, candidate):
         can_nodeid, can_frame, can_idx_in_frame = candidate.get_info()
-        # 看哪一个才是时间上相近的
         min_diff = 999
         correct_index = -1
         for possible_camera in self.camera_list:
@@ -27,7 +26,6 @@ class Topk(object):
                 if min_diff > abs(t - can_frame):
                     min_diff = abs(t - can_frame)
                     correct_index = possible_camera.get_idx_in_top_k()
-        # 超过间隔了，应该重新为它开一个
         if min_diff > self.time_gap:
             correct_index = -1
         return correct_index
@@ -36,7 +34,6 @@ class Topk(object):
         self.camera_list[camera_index].add_candidate(candidate)
 
     def camera_sort_info(self):
-        # 把camera里的candidate信息，按照时间顺序排序
         for cam in self.camera_list:
             cam.sort_info()
 
@@ -54,7 +51,6 @@ class Topk(object):
         filename = folder + '/avg_features.wyr'
         features = np.zeros(shape=(len(self.camera_list), setting.FEATURE_DIM)).astype('float32')
         for idx, cam in enumerate(self.camera_list):
-            # print(cam.get_avg_feature(folder_name))
             features[idx] = cam.get_avg_feature(folder_name)
         data = features.tobytes()
         f = open(filename, "wb")

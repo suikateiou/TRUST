@@ -9,18 +9,15 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 flags.DEFINE_integer('traj_len', 5, 'trajectory length in ground truth')
-flags.DEFINE_integer('traj_num', 50, 'trajectory num (cars num) of a certain length')
-flags.DEFINE_integer('video_time', 8, 'minutes of the output video')
-flags.DEFINE_integer('fps', 5, 'frame rate of the input(down sample) video')
-flags.DEFINE_integer('node_num', 220, 'how many intersections/videos')
-flags.DEFINE_integer('k', 100, 'size of top-k')
-flags.DEFINE_float('delta1', 0.6, 'threshold for proximity graph')
-flags.DEFINE_float('delta2', 0.6, 'threshold for path selection')
-flags.DEFINE_float('lamda', 0.2, 'parameter in path score function')
+flags.DEFINE_integer('video_time', 10, 'minutes of the output video')
+flags.DEFINE_integer('fps', 10, 'frame rate of the input (down-sampled) video')
+flags.DEFINE_integer('node_num', 30, 'how many intersections/videos')
+flags.DEFINE_integer('k', 80, 'size of top-k')
+flags.DEFINE_float('delta', 0.45, 'threshold for proximity graph and path selection')
 
 
 def main(_argv):
-    coarse_heap_no_refine = CoarseHeapNoRefine(FLAGS.traj_len, FLAGS.node_num, FLAGS.video_time, FLAGS.fps, FLAGS.k, FLAGS.delta1, FLAGS.delta2, FLAGS.lamda)
+    coarse_heap_no_refine = CoarseHeapNoRefine(FLAGS.traj_len, FLAGS.node_num, FLAGS.video_time, FLAGS.fps, FLAGS.k, FLAGS.delta)
     coarse_heap_no_refine.process_query()
 
 
