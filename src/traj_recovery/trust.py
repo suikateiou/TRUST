@@ -122,7 +122,7 @@ class CoarseHeapNoRefine(BasicSolver, ABC):
                             vision_len = max(new_vision_range[1] - new_vision_range[0], 0.01)
                             vel_score = cal_score(velocity_len, graph.max_vel_range, graph.min_vel_range)
                             vis_score = cal_score(vision_len, graph.max_vis_range, graph.min_vis_range)
-                            new_score = new_min_weight * vel_score * vis_score
+                            new_score = new_min_weight + vel_score + vis_score
 
                             if remove_head != -1 and flag1 and flag2:
                                 remove_prefix.add(str(temp[remove_head:]))
